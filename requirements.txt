@@ -7,4 +7,4 @@ joblib
 pyts
 imbalanced-learn
 matplotlib
-tensorflow-cpu==2.12.0
+tensorflow-cpu==2.10.0
