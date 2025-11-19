@@ -1,0 +1,10 @@
+Flask==2.2.5
+gunicorn==20.1.0
+numpy
+pandas
+scikit-learn
+joblib
+pyts
+imbalanced-learn
+matplotlib
+tensorflow-cpu==2.12.0

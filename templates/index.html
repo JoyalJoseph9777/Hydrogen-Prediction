@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hydrogen Prediction (PINN)</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .box { width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        input, select { width: 100%; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px; width: 100%; background: #0074D9; color: white; border: none; border-radius: 5px; }
+        h2 { color: green; }
+    </style>
+</head>
+<body>
+
+<h1>Hydrogen Prediction Using PINN</h1>
+
+<div class="box">
+<form method="POST">
+
+    <label>Additive</label>
+    <select name="additive">
+        <option value="No Additive" {% if additive=='No Additive' %}selected{% endif %}>No Additive</option>
+        <option value="Ni" {% if additive=='Ni' %}selected{% endif %}>Ni</option>
+        <option value="Pd/G" {% if additive=='Pd/G' %}selected{% endif %}>Pd/G</option>
+        <option value="AC" {% if additive=='AC' %}selected{% endif %}>AC</option>
+        <option value="CB" {% if additive=='CB' %}selected{% endif %}>CB</option>
+        <option value="G" {% if additive=='G' %}selected{% endif %}>G</option>
+        <option value="WS2NT/Po" {% if additive=='WS2NT/Po' %}selected{% endif %}>WS2NT/Po</option>
+    </select>
+
+    <label>Additive Concentration</label>
+    <input type="number" step="0.01" name="additiveC" value="{{ additiveC }}">
+
+    <label>Milling Time (hrs)</label>
+    <input type="number" step="0.1" name="milling_time" value="{{ milling_time }}">
+
+    <label>BPR</label>
+    <select name="bpr">
+        <option value="30" {% if bpr =='30' %}selected{% endif %}>30</option>
+        <option value="40" {% if bpr =='40' %}selected{% endif %}>40</option>
+    </select>
+
+    <label>Speed (RPM)</label>
+    <select name="speed">
+        <option value="300" {% if speed=='300' %}selected{% endif %}>300</option>
+        <option value="400" {% if speed=='400' %}selected{% endif %}>400</option>
+    </select>
+
+    <label>Temperature (fixed at 375°C)</label>
+    <input type="number" name="temperature" value="375" readonly>
+
+
+    <button type="submit">Predict</button>
+
+</form>
+</div>
+
+{% if prediction is not none %}
+    <h2>Predicted Hydrogen: {{ prediction }} wt%</h2>
+{% endif %}
+
+</body>
+</html>
